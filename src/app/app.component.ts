@@ -32,6 +32,8 @@ export class AppComponent {
           this.jshint[i].key == 'maxerr' ? this.jshint[i].value = 50 : null;
         }
       }
+      
+      this.jshint = this.getDefaultJsHint();
     }
 
     if (lint != 'cssLint') {
@@ -39,7 +41,7 @@ export class AppComponent {
       for(let i = 0; i < this.csslint.length; i++){
         this.csslint[i].value = false;
       }
-      
+      this.csslint = this.getDefaultCssLint();
     }
     
   }
