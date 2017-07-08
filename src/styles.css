@@ -45,6 +45,10 @@ background-color: #b90808;
   padding: 20px 10px;
 }
 
+.header {
+  text-align: center;
+  padding-bottom: 10px;
+}
 
 table {
   border: 1px solid #d2cfcf;
