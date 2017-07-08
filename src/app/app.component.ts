@@ -1,7 +1,5 @@
+import { NgModule } from '@angular/core';
 import { Component } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
-
-// import * as data from 'jshint.json';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +8,9 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 export class AppComponent {
   selectedLint: string;
   csslint: any;
-  jslint: any;
+  jshint: any;
 
-  constructor(private _sanitizer: DomSanitizer) {
+  constructor() {
     this.selectedLint = 'cssLint';
     this.csslint = [
       { key: "adjoining-classes", value: false, content:'Disallow adjoining classes'},
@@ -48,7 +46,7 @@ export class AppComponent {
       { key: "unqualified-attributes", value: false, content:'Disallow unqualified attribute selectors'},
       { key: "zero-units", value: false, content:'Disallow units for zero values'}
     ];
-    this.jslint = [
+    this.jshint = [
         {key:"maxerr",        value: 50, type: 'number', content: '{int} Maximum error before stopping'},
         {key:"bitwise",       value: true, type: 'boolean', content: 'true: Prohibit bitwise operators (&, |, ^, etc.)'},
         {key:"camelcase",     value: false, type: 'boolean', content: 'true: Identifiers must be in camelCase'},

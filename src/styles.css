@@ -57,15 +57,23 @@ table {
 
 table td, table th{
   margin: 0;
-  padding: 5px;
+  padding: 5px 10px;
+}
+
+table td:first-child,
+table th:first-child {
+  padding: 5px 15px;
 }
 
 table .checks{
   width: 40px;
 }
 
+table p{margin: 0;}
+
 table .checks p{
   margin: 0;
+  margin-left: 5px;
   margin-top: 5px;
   height: 27px;
 }
@@ -92,4 +100,21 @@ table .checks label{
   padding: 0 1rem;
   margin-left: 5px;
   margin-bottom: 10px;
+}
+table input[type="number"],
+table input[type=number]:not(.browser-default) {
+    height: 30px;
+    margin: 0;
+    text-align: center;
+    width: 30px;
+}
+
+table input[type=number]::-webkit-inner-spin-button,
+table input[type=number]::-webkit-outer-spin-button,
+table input[type=number]:not(.browser-default)::-webkit-inner-spin-button,
+table input[type=number]:not(.browser-default)::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
 }
