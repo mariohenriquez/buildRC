@@ -6,14 +6,15 @@
    </div>
    <div class="menu red accent-4">
      <ul>
-       <li> <a> CSS Lint </a> </li>
-       <li> <a> JS  Hint </a> </li>
+       <li> <a (click)="changeLint('cssLint')"> CSS Lint </a> </li>
+       <li> <a (click)="changeLint('jsHint')"> JS  Hint </a> </li>
      </ul>
    </div>
  </div>
 
  <div class="col m10">
-   <div class="content">
+
+   <div class="content" *ngIf='selectedLint == "cssLint"'>
      <div class="header">
        <h5> CSS Lint - BuildRC</h5>
      </div>
@@ -22,20 +23,21 @@
          <input type="checkbox" id="test5" />
          <label for="test5">Red</label>
        </p>
-       <p>
-         <input type="checkbox" id="test5" />
-         <label for="test5">Red</label>
-       </p>
-       <p>
-         <input type="checkbox" id="test5" />
-         <label for="test5">Red</label>
-       </p>
+     </form>
+   </div>
+
+   <div class="content" *ngIf='selectedLint == "jsHint"'>
+     <div class="header">
+       <h5> JS Hint - BuildRC</h5>
+     </div>
+     <form action="#">
        <p>
          <input type="checkbox" id="test5" />
          <label for="test5">Red</label>
        </p>
      </form>
    </div>
+
  </div>
 
 </div>
