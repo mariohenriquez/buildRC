@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {height: 100%;}
+.general-content {
+    height: 100vh;
+    margin-bottom: 0;
+}
 .col.sidebar {
   padding: 0;
   border-right: 1px solid #d2cfcf;
@@ -6,6 +11,7 @@
 }
 
 .col .menu{
+  height: 100%;
   text-align: center;
 }
 
