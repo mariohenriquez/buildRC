@@ -12,7 +12,7 @@ export class AppComponent {
   inputNumber: any;
 
   constructor() {
-    this.selectedLint = 'jsHint';
+    this.selectedLint = 'cssLint';
     this.csslint = [
       { key: "adjoining-classes", value: false},
       { key: "box-model", value: false},
@@ -123,5 +123,5 @@ export class AppComponent {
   changeLint(lint:string) {
     this.selectedLint = lint;
   }
-  
+
 }
