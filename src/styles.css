@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  -webkit-transition: all .38s; /* Safari */
+  transition: all .38s;
+}
+
 html, body {height: 100%;}
 .general-content {
     display: table;
@@ -124,4 +129,16 @@ table input[type=number]:not(.browser-default)::-webkit-outer-spin-button {
     -moz-appearance: none;
     appearance: none;
     margin: 0;
+}
+
+
+.menu ul {
+  margin: 0;
+}
+
+.menu ul li a.active {
+  border-right: 4px solid white;
+  border-top: 3px solid #9e0303;
+  border-radius: 0;
+  background-color: #9e0303;
 }
