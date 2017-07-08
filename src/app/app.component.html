@@ -31,9 +31,9 @@
        <h5> JS Hint - BuildRC</h5>
      </div>
      <form action="#">
-       <p>
-         <input type="checkbox" id="test5" />
-         <label for="test5">Red</label>
+       <p *ngFor="let js of jslint">
+         <input type="checkbox" id="test5" [checked]="js.value">
+         <label for="test5">{{js.key}}</label>
        </p>
      </form>
    </div>
