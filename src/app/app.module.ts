@@ -9,6 +9,7 @@ import { AppRoutesModule } from './app.routes.module';
     AppComponent
   ],
   imports: [
+    AppRoutesModule,
     BrowserModule
   ],
   providers: [],
