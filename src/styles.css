@@ -1,1 +1,144 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  -webkit-transition: all .38s; /* Safari */
+  transition: all .38s;
+}
+
+html, body {height: 100%;}
+.general-content {
+    display: table;
+    height: 100%;
+    margin-bottom: 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.col.sidebar {
+  padding: 0;
+  border-right: 1px solid #d2cfcf;
+  height: 100%;
+  background-color: #b71c1c;
+}
+
+.col .menu{
+  height: calc(100% - 161px);
+  text-align: center;
+}
+
+.col .menu a{
+  font-family: 'Cabin Sketch', cursive;
+  color: white;
+  font-size: 24px;
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.col .menu a:hover{
+  background-color: #a20505;
+}
+
+.col .logo{
+  text-align: center;
+  padding: 10px;
+  background-color: white;
+}
+
+.col .logo img{
+  width: 80%;
+}
+
+.col .content {
+  padding: 20px 10px;
+}
+
+.header {
+  text-align: center;
+  padding-bottom: 10px;
+}
+.table-wrapper {
+  border-bottom: 1px solid #d2cfcf;
+  border-top: 1px solid #d2cfcf;
+  height: calc(100vh - 145px);
+  overflow: hidden;
+  overflow-y: scroll;
+}
+table {
+  border: 1px solid #d2cfcf;
+}
+
+table td, table th{
+  margin: 0;
+  padding: 5px 10px;
+}
+
+table td:first-child,
+table th:first-child {
+  padding: 5px 15px;
+}
+
+table .checks{
+  width: 40px;
+}
+
+table p{margin: 0;}
+
+table .checks p{
+  margin: 0;
+  margin-left: 5px;
+  margin-top: 5px;
+  height: 27px;
+}
+
+table .checks label{
+  margin: 0;
+  padding: 0px;
+}
+
+.btn img {
+  width: 27px;
+  margin: 5px 0;
+  display: inline-block;
+  margin-right: 7px;
+}
+
+.btn span {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 1px;
+}
+
+.btn {
+  padding: 0 1rem;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+table input[type="number"],
+table input[type=number]:not(.browser-default) {
+    height: 30px;
+    margin: 0;
+    text-align: center;
+    width: 30px;
+}
+
+table input[type=number]::-webkit-inner-spin-button,
+table input[type=number]::-webkit-outer-spin-button,
+table input[type=number]:not(.browser-default)::-webkit-inner-spin-button,
+table input[type=number]:not(.browser-default)::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+
+.menu ul {
+  margin: 0;
+}
+
+.menu ul li a.active {
+  border-right: 4px solid white;
+  border-top: 3px solid #9e0303;
+  border-radius: 0;
+  background-color: #9e0303;
+}
