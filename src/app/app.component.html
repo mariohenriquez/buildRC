@@ -4,7 +4,7 @@
    <div class="logo">
      <img src="/assets/images/logo.png" alt="">
    </div>
-   <div class="menu red accent-4">
+   <div class="menu red darken-4">
      <ul>
        <li> <a (click)="changeLint('cssLint')"> CSS Lint </a> </li>
        <li> <a (click)="changeLint('jsHint')"> JS  Hint </a> </li>
@@ -17,13 +17,15 @@
    <div class="content" *ngIf='selectedLint == "cssLint"'>
      <div class="header">
        <h5> CSS Lint - BuildRC</h5>
+       <a class="waves-effect waves-light btn blue-grey lighten-2" id='downloadRecommended'><img src="/assets/images/sparkle.png" alt=""><span>Use Recommended RC</span></a>
+       <a class="waves-effect waves-light btn red darken-4" id='download' (click)="downloadFile()"><img src="/assets/images/build.png" alt=""><span>Generate</span></a>
      </div>
      <table class="bordered highlight striped">
        <thead>
          <tr>
            <th class="checks">
              <p>
-               <input type="checkbox" id='selectAll'/>
+               <input type="checkbox" id='selectAll' (change)="selectAllRules($event)"/>
                <label for='selectAll'></label>
              </p>
            </th>
@@ -32,10 +34,10 @@
          </tr>
        </thead>
        <tbody>
-         <tr *ngFor="let lint of csslint">
+         <tr *ngFor="let lint of csslint; let i = index">
            <td class="checks">
              <p>
-               <input type="checkbox" id={{lint.key}} [checked]="lint.value"/>
+               <input type="checkbox" id={{lint.key}} [checked]="lint.value" (change)="selectRule($event, i)"/>
                <label for={{lint.key}}></label>
              </p>
            </td>
@@ -43,7 +45,7 @@
              <span>{{lint.key}}</span>
            </td>
            <td>
-             <span>{{lint.descp}}</span>
+             <span>{{lint.content}}</span>
            </td>
          </tr>
        </tbody>
