@@ -1,5 +1,5 @@
+import { NgModule } from '@angular/core';
 import { Component } from '@angular/core';
-// import * as data from 'jshint.json';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   selectedLint: string;
   csslint: any;
-  jslint: any;
+  jshint: any;
+  inputNumber: any;
 
   constructor() {
-    this.selectedLint = 'cssLint';
+    this.selectedLint = 'jsHint';
     this.csslint = [
       { key: "adjoining-classes", value: false},
       { key: "box-model", value: false},
@@ -46,7 +47,7 @@ export class AppComponent {
       { key: "unqualified-attributes", value: false},
       { key: "zero-units", value: false}
     ];
-    this.jslint = [
+    this.jshint = [
         {key:"maxerr",        value: 50, type: 'number', content: '{int} Maximum error before stopping'},       
         {key:"bitwise",       value: true, type: 'boolean', content: 'true: Prohibit bitwise operators (&, |, ^, etc.)'},     
         {key:"camelcase",     value: false, type: 'boolean', content: 'true: Identifiers must be in camelCase'},    
@@ -122,4 +123,5 @@ export class AppComponent {
   changeLint(lint:string) {
     this.selectedLint = lint;
   }
+  
 }

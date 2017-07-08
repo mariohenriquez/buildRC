@@ -55,12 +55,37 @@
      <div class="header">
        <h5> JS Hint - BuildRC</h5>
      </div>
-     <form action="#">
-       <p *ngFor="let js of jslint">
-         <input type="checkbox" id="test5" [checked]="js.value">
-         <label for="test5">{{js.key}}</label>
-       </p>
-     </form>
+     <table class="bordered highlight striped">
+       <thead>
+         <tr>
+           <th class="checks">
+             <p>
+               <input type="checkbox" id='selectAll'/>
+               <label for='selectAll'></label>
+             </p>
+           </th>
+           <th> Rule </th>
+           <th> Description </th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let lint of jshint">
+           <td [ngClass]="{'checks': lint.type == 'boolean'}">
+              <p>
+                <input *ngIf="lint.type == 'number'" type="number" id={{lint.key}} [(ngModel)]="lint.value" placeholder="0" min="1" max="100" maxlength="3">
+                <input *ngIf="lint.type == 'boolean'" type="checkbox" id={{lint.key}} [checked]="lint.value"/>
+                <label *ngIf="lint.type == 'boolean'" for={{lint.key}}></label>
+              </p>
+           </td>
+           <td>
+             <span>{{lint.key}}</span>
+           </td>
+           <td>
+             <span>{{lint.content}}</span>
+           </td>
+         </tr>
+       </tbody>
+     </table>
    </div>
 
  </div>
