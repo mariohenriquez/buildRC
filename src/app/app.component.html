@@ -18,12 +18,37 @@
      <div class="header">
        <h5> CSS Lint - BuildRC</h5>
      </div>
-     <form action="#">
-       <p>
-         <input type="checkbox" id="test5" />
-         <label for="test5">Red</label>
-       </p>
-     </form>
+     <table class="bordered highlight striped centered">
+       <thead>
+         <tr>
+           <th class="checks">
+             <p>
+               <input type="checkbox" id='selectAll'/>
+               <label for='selectAll'></label>
+             </p>
+           </th>
+           <th> Rule </th>
+           <th> Description </th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let lint of csslint">
+           <td class="checks">
+             <p>
+               <input type="checkbox" id={{lint.key}} [checked]="lint.value"/>
+               <label for={{lint.key}}></label>
+             </p>
+           </td>
+           <td>
+             <span>{{lint.key}}</span>
+           </td>
+           <td>
+             <span>{{lint.descp}}</span>
+           </td>
+         </tr>
+       </tbody>
+     </table>
+
    </div>
 
    <div class="content" *ngIf='selectedLint == "jsHint"'>

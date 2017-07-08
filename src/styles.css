@@ -1,13 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 html, body {height: 100%;}
 .general-content {
-    height: 100vh;
+    height: 100%;
     margin-bottom: 0;
+    display: table;
+    width: 100%;
 }
+
 .col.sidebar {
   padding: 0;
   border-right: 1px solid #d2cfcf;
   height: 100%;
+  background-color: #d50000;
 }
 
 .col .menu{
@@ -30,8 +34,36 @@ background-color: #b90808;
 .col .logo{
   text-align: center;
   padding: 10px;
+  background-color: white;
 }
 
 .col .logo img{
   width: 80%;
+}
+
+.col .content {
+  padding: 20px 10px;
+}
+
+
+table {
+  border: 1px solid #d2cfcf;
+}
+
+table td, table th{
+  margin: 0;
+  padding: 5px;
+}
+
+table .checks{
+  width: 40px;
+}
+
+table .checks p{
+  margin: 0
+}
+
+table .checks label{
+  margin: 0;
+  padding: 0px;
 }
