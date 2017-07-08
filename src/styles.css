@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 html, body {height: 100%;}
 .general-content {
+    display: table;
     height: 100%;
     margin-bottom: 0;
-    display: table;
+    overflow: hidden;
     width: 100%;
 }
 
@@ -50,7 +51,13 @@ html, body {height: 100%;}
   text-align: center;
   padding-bottom: 10px;
 }
-
+.table-wrapper {
+  border-bottom: 1px solid #d2cfcf;
+  border-top: 1px solid #d2cfcf;
+  height: calc(100vh - 145px);
+  overflow: hidden;
+  overflow-y: scroll;
+}
 table {
   border: 1px solid #d2cfcf;
 }

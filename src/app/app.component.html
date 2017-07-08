@@ -20,37 +20,38 @@
        <a class="waves-effect waves-light btn blue-grey lighten-2" id='downloadRecommended' (click)="exportCsslintRecommended()"><img src="/assets/images/sparkle.png" alt=""><span>Use Recommended RC</span></a>
        <a class="waves-effect waves-light btn red darken-4" id='download' (click)="exportCsslintRC()"><img src="/assets/images/build.png" alt=""><span>Generate</span></a>
      </div>
-     <table class="bordered highlight striped">
-       <thead>
-         <tr>
-           <th class="checks">
-             <p>
-               <input type="checkbox" id='selectAll' [(ngModel)]="titleCSSLint" (change)="selectAllRules('cssLint', $event)"/>
-               <label for='selectAll'></label>
-             </p>
-           </th>
-           <th> Rule </th>
-           <th> Description </th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr *ngFor="let lint of csslint; let i = index">
-           <td class="checks">
-             <p>
-               <input type="checkbox" id={{lint.key}} [checked]="lint.value" (change)="selectRule('cssLint', $event, i)"/>
-               <label for={{lint.key}}></label>
-             </p>
-           </td>
-           <td>
-             <span>{{lint.key}}</span>
-           </td>
-           <td>
-             <span>{{lint.content}}</span>
-           </td>
-         </tr>
-       </tbody>
-     </table>
-
+     <div class="table-wrapper">
+      <table class="bordered highlight striped">
+        <thead>
+          <tr>
+            <th class="checks">
+              <p>
+                <input type="checkbox" id='selectAll' [(ngModel)]="titleCSSLint" (change)="selectAllRules('cssLint', $event)"/>
+                <label for='selectAll'></label>
+              </p>
+            </th>
+            <th> Rule </th>
+            <th> Description </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lint of csslint; let i = index">
+            <td class="checks">
+              <p>
+                <input type="checkbox" id={{lint.key}} [checked]="lint.value" (change)="selectRule('cssLint', $event, i)"/>
+                <label for={{lint.key}}></label>
+              </p>
+            </td>
+            <td>
+              <span>{{lint.key}}</span>
+            </td>
+            <td>
+              <span>{{lint.content}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
    </div>
 
    <div class="content" *ngIf='selectedLint == "jsHint"'>
@@ -59,37 +60,39 @@
        <a class="waves-effect waves-light btn blue-grey lighten-2" id='downloadRecommended'><img src="/assets/images/sparkle.png" alt=""><span>Use Recommended RC</span></a>
        <a class="waves-effect waves-light btn red darken-4" id='download' (click)="downloadFile('jsHint')"><img src="/assets/images/build.png" alt=""><span>Generate</span></a>
      </div>
-     <table class="bordered highlight striped">
-       <thead>
-         <tr>
-           <th class="checks">
-             <p>
-               <input type="checkbox" id='selectAll' [(ngModel)]="titleJSHint" (change)="selectAllRules('jsHint', $event)"/>
-               <label for='selectAll'></label>
-             </p>
-           </th>
-           <th> Rule </th>
-           <th> Description </th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr *ngFor="let lint of jshint; let i = index">
-           <td [ngClass]="{'checks': lint.type == 'boolean'}">
+     <div class="table-wrapper">
+      <table class="bordered highlight striped">
+        <thead>
+          <tr>
+            <th class="checks">
               <p>
-                <input *ngIf="lint.type == 'number'" type="number" id={{lint.key}} [(ngModel)]="lint.value" placeholder="0" min="1" max="100" maxlength="3">
-                <input *ngIf="lint.type == 'boolean'" type="checkbox" id={{lint.key}} [checked]="lint.value" (change)="selectRule('jsHint', $event, i)"/>
-                <label *ngIf="lint.type == 'boolean'" for={{lint.key}}></label>
+                <input type="checkbox" id='selectAll' [(ngModel)]="titleJSHint" (change)="selectAllRules('jsHint', $event)"/>
+                <label for='selectAll'></label>
               </p>
-           </td>
-           <td>
-             <span>{{lint.key}}</span>
-           </td>
-           <td>
-             <span>{{lint.content}}</span>
-           </td>
-         </tr>
-       </tbody>
-     </table>
+            </th>
+            <th> Rule </th>
+            <th> Description </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lint of jshint; let i = index">
+            <td [ngClass]="{'checks': lint.type == 'boolean'}">
+                <p>
+                  <input *ngIf="lint.type == 'number'" type="number" id={{lint.key}} [(ngModel)]="lint.value" placeholder="0" min="1" max="100" maxlength="3">
+                  <input *ngIf="lint.type == 'boolean'" type="checkbox" id={{lint.key}} [checked]="lint.value" (change)="selectRule('jsHint', $event, i)"/>
+                  <label *ngIf="lint.type == 'boolean'" for={{lint.key}}></label>
+                </p>
+            </td>
+            <td>
+              <span>{{lint.key}}</span>
+            </td>
+            <td>
+              <span>{{lint.content}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div> 
    </div>
 
  </div>

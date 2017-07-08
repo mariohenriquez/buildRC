@@ -19,11 +19,29 @@ export class AppComponent {
     this.jshint = this.getDefaultJsHint();
     this.csslintCopy = Object.assign([], this.csslint);
   }
-  
+
   changeLint(lint:string) {
     this.selectedLint = lint;
-    this.titleCSSLint = false;
-    this.titleJSHint = false;
+  
+    if (lint == 'cssLint') {
+      this.titleJSHint = false;
+      for(let i = 0; i < this.jshint.length; i++){
+        this.jshint[i].value = false;
+        if (this.jshint[i].type != 'boolean') {
+          this.jshint[i].key == 'esversion' ? this.jshint[i].value = 5 : null;
+          this.jshint[i].key == 'maxerr' ? this.jshint[i].value = 50 : null;
+        }
+      }
+    }
+
+    if (lint != 'cssLint') {
+      this.titleCSSLint = false;
+      for(let i = 0; i < this.csslint.length; i++){
+        this.csslint[i].value = false;
+      }
+      
+    }
+    
   }
 
   selectAllRules(type: string, event:any) {
@@ -32,16 +50,8 @@ export class AppComponent {
     if( type == 'cssLint') {
       for(let i = 0; i < this.csslint.length; i++){
         this.csslint[i].value = event;
-        this.titleCSSLint = true;
-        this.titleJSHint = false;
       }
-      for(let i = 0; i < this.jshint.length; i++){
-        this.jshint[i].value = false;
-        if (this.jshint[i].type != 'boolean') {
-          this.jshint[i].key == 'esversion' ? this.jshint[i].value = 5 : null;
-          this.jshint[i].key == 'maxerr' ? this.jshint[i].value = 50 : null;
-        }
-      }
+      
     } else {
       for(let i = 0; i < this.jshint.length; i++){
         this.jshint[i].value = event;
@@ -49,12 +59,8 @@ export class AppComponent {
           this.jshint[i].key == 'esversion' ? this.jshint[i].value = 5 : null;
           this.jshint[i].key == 'maxerr' ? this.jshint[i].value = 50 : null;
         }
-        this.titleCSSLint = false;
-        this.titleJSHint = true;
       }
-      for(let i = 0; i < this.csslint.length; i++){
-        this.csslint[i].value = false;
-      }
+      
     }
   }
 
