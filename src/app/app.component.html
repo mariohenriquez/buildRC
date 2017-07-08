@@ -17,8 +17,8 @@
    <div class="content" *ngIf='selectedLint == "cssLint"'>
      <div class="header">
        <h5> CSS Lint - BuildRC</h5>
-       <a class="waves-effect waves-light btn blue-grey lighten-2" id='downloadRecommended'><img src="/assets/images/sparkle.png" alt=""><span>Use Recommended RC</span></a>
-       <a class="waves-effect waves-light btn red darken-4" id='download' (click)="downloadFile()"><img src="/assets/images/build.png" alt=""><span>Generate</span></a>
+       <a class="waves-effect waves-light btn blue-grey lighten-2" id='downloadRecommended' (click)="exportCsslintRecommended()"><img src="/assets/images/sparkle.png" alt=""><span>Use Recommended RC</span></a>
+       <a class="waves-effect waves-light btn red darken-4" id='download' (click)="exportCsslintRC()"><img src="/assets/images/build.png" alt=""><span>Generate</span></a>
      </div>
      <table class="bordered highlight striped">
        <thead>

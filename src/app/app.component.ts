@@ -9,43 +9,11 @@ export class AppComponent {
   selectedLint: string;
   csslint: any;
   jshint: any;
+  csslintCopy: any;
 
   constructor() {
     this.selectedLint = 'cssLint';
-    this.csslint = [
-      { key: "adjoining-classes", value: false, content:'Disallow adjoining classes'},
-      { key: "box-model", value: false, content: "Beware of box model size"},
-      { key: "box-sizing", value: false, content:'Disallow box-sizing'},
-      { key: "bulletproof-font-face", value: false, content:'This rule is aimed at preventing 404 errors in Internet Explorer 8 and earlier due to a bug in how web font URLs are parsed.'},
-      { key: "compatible-vendor-prefixes", value: false, content: 'Require compatible vendor prefixes'},
-      { key: "display-property-grouping", value: false, content: "Require properties appropriate for display"},
-      { key: "duplicate-background-images", value: false, content:'Disallow duplicate background images'},
-      { key: "duplicate-properties", value: false, content: "Disallow duplicate properties"},
-      { key: "empty-rules", value: false, content:'Disallow empty rules'},
-      { key: "fallback-colors", value: false, content:'Require fallback colors'},
-      { key: "floats", value: false, content:'Disallow too many floats'},
-      { key: "font-faces", value: false, content:"Don't use too many web fonts"},
-      { key: "font-sizes", value: false, content:"Don't use too many font-size declarations"},
-      { key: "gradients", value: false, content:'Require all gradient definitions'},
-      { key: "ids", value: false, content:'Disallow IDs in selectors'},
-      { key: "import", value: false, content:'Disallow @import'},
-      { key: "important", value: false, content:'Disallow !important'},
-      { key: "known-properties", value: false, content:'Require use of known properties'},
-      { key: "non-link-hover", value: false, content:'Using :hover pseudo-selector to non-link elements is known to be slow.'},
-      { key: "outline-none", value: false, content:'Disallow outline:none'},
-      { key: "overqualified-elements", value: false, content:'Disallow overqualified elements'},
-      { key: "qualified-headings", value: false, content:'This rule is aimed at finding qualified heading rules, and as such warns when any rule contains a selector where the heading element is last.'},
-      { key: "regex-selectors", value: false, content:'Disallow selectors that look like regular expressions'},
-      { key: "shorthand", value: false, content:'Require shorthand properties'},
-      { key: "star-property-hack", value: false, content:'Disallow star hack'},
-      { key: "text-indent", value: false, content:'Disallow negative text-indent'},
-      { key: "underscore-property-hack", value: false, content:'Disallow underscore hack'},
-      { key: "vendor-prefix", value: false, content:'Require standard property with vendor prefix'},
-      { key: "unique-headings", value: false, content:'Headings should only be defined once'},
-      { key: "universal-selector", value: false, content:'Disallow universal selector'},
-      { key: "unqualified-attributes", value: false, content:'Disallow unqualified attribute selectors'},
-      { key: "zero-units", value: false, content:'Disallow units for zero values'}
-    ];
+    this.csslint = this.getDefaultCssLint();
     this.jshint = [
         {key:"maxerr",        value: 50, type: 'number', content: '{int} Maximum error before stopping'},
         {key:"bitwise",       value: true, type: 'boolean', content: 'true: Prohibit bitwise operators (&, |, ^, etc.)'},
@@ -117,6 +85,7 @@ export class AppComponent {
         {key:"wsh",           value: false, type: 'boolean', content: 'Windows Scripting Host'},
         {key:"yui",           value: false, type: 'boolean', content: 'Yahoo User Interface'}
     ]
+    this.csslintCopy = Object.assign([], this.csslint);
   }
 
   changeLint(lint:string) {
@@ -124,6 +93,8 @@ export class AppComponent {
   }
 
   selectAllRules(event:any) {
+    this.csslintCopy = Object.assign([], this.csslint);
+
     var event = event.target.checked;
     for(let i=0; i < this.csslint.length; i++){
       this.csslint[i].value = event;
@@ -135,16 +106,11 @@ export class AppComponent {
     this.csslint[index].value = event;
   }
 
-  downloadFile(){
-    var objectExport = {
-         title: 'title',
-         description: 'description',
-         scores : 'scores'
-        }
-    var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objectExport)); //preparo la data para ser adjuntada al link de exportación
-    document.getElementById('download').setAttribute('href','data:'+data);
-    var slug = this.slugify('title'); //convierto el titulo de la partirura a slug para que el archivo contenga ese nombre
-    document.getElementById('download').setAttribute('download','pix-data-'+slug+'.json'); // indico el nombre con el cual se descargará el archivo
+  downloadFile(objectExport, filename, buttonId){
+    var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(objectExport));
+    document.getElementById(buttonId).setAttribute('href','data:'+data);
+    var slug = this.slugify(filename);
+    document.getElementById(buttonId).setAttribute('download',slug);
   }
 
   slugify(string) {
@@ -157,5 +123,62 @@ export class AppComponent {
       .replace(/\-\-+/g, "-")
       .replace(/^-+/, "")
       .replace(/-+$/, "");
+  }
+
+  exportCsslintRC(){
+    var json = this.buildCssJson();
+    this.downloadFile(json, '.csslintrc', 'download')
+  }
+
+  exportCsslintRecommended(){
+    this.csslint = this.getDefaultCssLint()
+    var json = this.buildCssJson();
+    this.downloadFile(json, '.csslintrc', 'downloadRecommended')
+  }
+
+  buildCssJson(){
+    var json = {};
+    for(let i=0; i < this.csslint.length; i++){
+      var rule = this.csslint[i];
+      json[rule.key] = rule.value;
+    }
+    return json;
+  }
+
+  getDefaultCssLint(){
+    return [
+      { key: "adjoining-classes", value: true, content:'Disallow adjoining classes'},
+      { key: "box-model", value: true, content: "Beware of box model size"},
+      { key: "box-sizing", value: false, content:'Disallow box-sizing'},
+      { key: "bulletproof-font-face", value: true, content:'This rule is aimed at preventing 404 errors in Internet Explorer 8 and earlier due to a bug in how web font URLs are parsed.'},
+      { key: "compatible-vendor-prefixes", value: false, content: 'Require compatible vendor prefixes'},
+      { key: "display-property-grouping", value: false, content: "Require properties appropriate for display"},
+      { key: "duplicate-background-images", value: false, content:'Disallow duplicate background images'},
+      { key: "duplicate-properties", value: false, content: "Disallow duplicate properties"},
+      { key: "empty-rules", value: true, content:'Disallow empty rules'},
+      { key: "fallback-colors", value: false, content:'Require fallback colors'},
+      { key: "floats", value: true, content:'Disallow too many floats'},
+      { key: "font-faces", value: true, content:"Don't use too many web fonts"},
+      { key: "font-sizes", value: true, content:"Don't use too many font-size declarations"},
+      { key: "gradients", value: false, content:'Require all gradient definitions'},
+      { key: "ids", value: false, content:'Disallow IDs in selectors'},
+      { key: "import", value: true, content:'Disallow @import'},
+      { key: "important", value: true, content:'Disallow !important'},
+      { key: "known-properties", value: false, content:'Require use of known properties'},
+      { key: "non-link-hover", value: false, content:'Using :hover pseudo-selector to non-link elements is known to be slow.'},
+      { key: "outline-none", value: false, content:'Disallow outline:none'},
+      { key: "overqualified-elements", value: false, content:'Disallow overqualified elements'},
+      { key: "qualified-headings", value: false, content:'This rule is aimed at finding qualified heading rules, and as such warns when any rule contains a selector where the heading element is last.'},
+      { key: "regex-selectors", value: false, content:'Disallow selectors that look like regular expressions'},
+      { key: "shorthand", value: true, content:'Require shorthand properties'},
+      { key: "star-property-hack", value: false, content:'Disallow star hack'},
+      { key: "text-indent", value: true, content:'Disallow negative text-indent'},
+      { key: "underscore-property-hack", value: false, content:'Disallow underscore hack'},
+      { key: "vendor-prefix", value: false, content:'Require standard property with vendor prefix'},
+      { key: "unique-headings", value: true, content:'Headings should only be defined once'},
+      { key: "universal-selector", value: false, content:'Disallow universal selector'},
+      { key: "unqualified-attributes", value: false, content:'Disallow unqualified attribute selectors'},
+      { key: "zero-units", value: true, content:'Disallow units for zero values'}
+    ];
   }
 }
