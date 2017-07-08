@@ -9,6 +9,8 @@ export class AppComponent {
   selectedLint: string;
   csslint: any;
   jshint: any;
+  titleCSSLint: boolean;
+  titleJSHint: boolean;
 
   constructor() {
     this.selectedLint = 'cssLint';
@@ -121,18 +123,46 @@ export class AppComponent {
 
   changeLint(lint:string) {
     this.selectedLint = lint;
+    this.titleCSSLint = false;
+    this.titleJSHint = false;
   }
 
-  selectAllRules(event:any) {
+  selectAllRules(type: string, event:any) {
     var event = event.target.checked;
-    for(let i=0; i < this.csslint.length; i++){
-      this.csslint[i].value = event;
+    
+    if( type == 'cssLint') {
+      for(let i = 0; i < this.csslint.length; i++){
+        this.csslint[i].value = event;
+        this.titleCSSLint = true;
+        this.titleJSHint = false;
+      }
+      for(let i = 0; i < this.jshint.length; i++){
+        this.jshint[i].value = false;
+        if (this.jshint[i].type != 'boolean') {
+          this.jshint[i].key == 'esversion' ? this.jshint[i].value = 5 : null;
+          this.jshint[i].key == 'maxerr' ? this.jshint[i].value = 50 : null;
+        }
+      }
+    } else {
+      for(let i = 0; i < this.jshint.length; i++){
+        this.jshint[i].value = event;
+        if (this.jshint[i].type != 'boolean') {
+          this.jshint[i].key == 'esversion' ? this.jshint[i].value = 5 : null;
+          this.jshint[i].key == 'maxerr' ? this.jshint[i].value = 50 : null;
+        }
+        this.titleCSSLint = false;
+        this.titleJSHint = true;
+      }
+      for(let i = 0; i < this.csslint.length; i++){
+        this.csslint[i].value = false;
+      }
     }
   }
 
-  selectRule(event:any, index:number) {
+  selectRule(type: string, event:any, index:number) {
     var event = event.target.checked;
-    this.csslint[index].value = event;
+    type == 'cssLint' ? this.csslint[index].value = event : null;
+    type == 'jsHint' ? this.jshint[index].value = event : null;
   }
 
   downloadFile(){
