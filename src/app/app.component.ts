@@ -19,7 +19,7 @@ export class AppComponent {
     this.jshint = this.getDefaultJsHint();
     this.csslintCopy = Object.assign([], this.csslint);
   }
-  
+
   changeLint(lint:string) {
     this.selectedLint = lint;
     this.titleCSSLint = false;
@@ -28,7 +28,7 @@ export class AppComponent {
 
   selectAllRules(type: string, event:any) {
     var event = event.target.checked;
-    
+
     if( type == 'cssLint') {
       for(let i = 0; i < this.csslint.length; i++){
         this.csslint[i].value = event;
@@ -98,6 +98,26 @@ export class AppComponent {
     var json = {};
     for(let i=0; i < this.csslint.length; i++){
       var rule = this.csslint[i];
+      json[rule.key] = rule.value;
+    }
+    return json;
+  }
+
+  exportJslintRC(){
+    var json = this.buildJsJson();
+    this.downloadFile(json, '.jshintrc', 'download')
+  }
+
+  exportJslintRecommended(){
+    this.jshint = this.getDefaultJsHint()
+    var json = this.buildJsJson();
+    this.downloadFile(json, '.jshintrc', 'downloadRecommended')
+  }
+
+  buildJsJson(){
+    var json = {};
+    for(let i=0; i < this.jshint.length; i++){
+      var rule = this.jshint[i];
       json[rule.key] = rule.value;
     }
     return json;
