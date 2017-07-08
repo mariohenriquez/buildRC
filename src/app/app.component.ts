@@ -17,12 +17,11 @@ export class AppComponent {
     this.selectedLint = 'cssLint';
     this.csslint = this.getDefaultCssLint();
     this.jshint = this.getDefaultJsHint();
-    this.csslintCopy = Object.assign([], this.csslint);
   }
 
   changeLint(lint:string) {
     this.selectedLint = lint;
-  
+
     if (lint == 'cssLint') {
       this.titleJSHint = false;
       for(let i = 0; i < this.jshint.length; i++){
@@ -32,7 +31,7 @@ export class AppComponent {
           this.jshint[i].key == 'maxerr' ? this.jshint[i].value = 50 : null;
         }
       }
-      
+
       this.jshint = this.getDefaultJsHint();
     }
 
@@ -43,7 +42,7 @@ export class AppComponent {
       }
       this.csslint = this.getDefaultCssLint();
     }
-    
+
   }
 
   selectAllRules(type: string, event:any) {
@@ -53,7 +52,7 @@ export class AppComponent {
       for(let i = 0; i < this.csslint.length; i++){
         this.csslint[i].value = event;
       }
-      
+
     } else {
       for(let i = 0; i < this.jshint.length; i++){
         this.jshint[i].value = event;
@@ -62,7 +61,7 @@ export class AppComponent {
           this.jshint[i].key == 'maxerr' ? this.jshint[i].value = 50 : null;
         }
       }
-      
+
     }
   }
 
